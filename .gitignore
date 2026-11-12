@@ -1,0 +1,9 @@
+# Secrets - NEVER commit your API key
+.env
+.env.local
+.env.*.local
+
+# OS / Editor
+.DS_Store
+Thumbs.db
+*.log

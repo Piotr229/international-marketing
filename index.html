@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GlobalMark AI — International Marketing Tutor</title>
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <!-- Header -->
+    <header class="app-header">
+      <div class="brand">
+        <div class="brand-icon" aria-hidden="true">🌐</div>
+        <div class="brand-text">
+          <h1>GlobalMark AI</h1>
+          <p>International &amp; Global Marketing Tutor (US &amp; EU Textbooks)</p>
+        </div>
+      </div>
+
+      <div class="header-actions">
+        <button id="modelBadgeBtn" class="model-badge" type="button" title="Change Gemini model">
+          <span class="status-dot"></span>
+          <span id="activeModelLabel">gemini-4-hydrogen</span>
+        </button>
+        <button id="clearChatBtn" class="btn-secondary" type="button" title="Start a new conversation">
+          New Chat
+        </button>
+        <button id="settingsBtn" class="btn-icon" type="button" aria-label="Settings" title="Model &amp; API Settings">
+          ⚙️
+        </button>
+      </div>
+    </header>
+
+    <!-- Main Chat Area -->
+    <main class="chat-main" id="chatScrollContainer">
+      <!-- Welcome / Empty State -->
+      <section class="welcome-panel" id="welcomePanel">
+        <div class="welcome-badge">College Study Assistant</div>
+        <h2>Master International &amp; Global Marketing</h2>
+        <p class="welcome-subtitle">
+          Ask about market entry modes, cultural frameworks (Hofstede, Hall, Trompenaars), CAGE distance,
+          standardization vs. adaptation, global pricing, Incoterms, and regional trade blocs.
+        </p>
+
+        <div class="topic-grid" id="topicGrid">
+          <!-- Populated by app.js from config.js -->
+        </div>
+      </section>
+
+      <!-- Messages -->
+      <section class="messages-list" id="messagesList" aria-live="polite"></section>
+    </main>
+
+    <!-- Composer -->
+    <footer class="composer-wrapper">
+      <form class="composer-form" id="chatForm">
+        <textarea
+          id="userInput"
+          rows="1"
+          placeholder="Ask an international marketing question (e.g., Compare joint ventures vs. licensing in Europe)..."
+          aria-label="Ask an international marketing question"
+          maxlength="2000"
+        ></textarea>
+        <div class="composer-controls">
+          <span class="char-count" id="charCount">0 / 2000</span>
+          <button type="submit" id="sendBtn" class="btn-primary" disabled>
+            Send
+          </button>
+        </div>
+      </form>
+      <p class="disclaimer">
+        Grounded in standard US &amp; European university international marketing textbooks. Verify course-specific definitions with your syllabus.
+      </p>
+    </footer>
+  </div>
+
+  <!-- Settings Modal -->
+  <div class="modal-backdrop" id="settingsModal" hidden>
+    <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="settingsTitle">
+      <div class="modal-header">
+        <h2 id="settingsTitle">Tutor Settings</h2>
+        <button id="closeSettingsBtn" class="btn-icon" type="button" aria-label="Close settings">✕</button>
+      </div>
+
+      <div class="modal-body">
+        <div class="form-group">
+          <label for="modelSelect">Gemini Model</label>
+          <select id="modelSelect"></select>
+          <p class="field-hint">
+            Default is <code>gemini-4-hydrogen</code>. Choose "Custom model ID" to test any newly released Gemini model.
+          </p>
+        </div>
+
+        <div class="form-group" id="customModelGroup" hidden>
+          <label for="customModelInput">Custom Model ID</label>
+          <input
+            type="text"
+            id="customModelInput"
+            placeholder="e.g., gemini-4-hydrogen or gemini-4.5-pro"
+          />
+        </div>
+
+        <hr class="divider" />
+
+        <div class="form-group">
+          <label for="proxyUrlInput">Backend Proxy URL (Optional Override)</label>
+          <input
+            type="url"
+            id="proxyUrlInput"
+            placeholder="https://your-worker.your-name.workers.dev/api/chat"
+          />
+          <p class="field-hint">
+            For public GitHub Pages hosting, point this to your Cloudflare Worker proxy (or set <code>PROXY_URL</code> in <code>config.js</code>). Leave blank when running locally with <code>local-server.ps1</code>.
+          </p>
+        </div>
+
+        <div class="form-group">
+          <label for="directApiKeyInput">Direct Gemini API Key (Local / Personal Use Only)</label>
+          <input
+            type="password"
+            id="directApiKeyInput"
+            placeholder="AIza... (stored only in your browser's localStorage)"
+            autocomplete="off"
+          />
+          <p class="field-hint warning-text">
+            Only used if no proxy is active. Never hardcode your API key in files committed to GitHub.
+          </p>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button id="resetSettingsBtn" class="btn-secondary" type="button">Reset Defaults</button>
+        <button id="saveSettingsBtn" class="btn-primary" type="button">Save Settings</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="./config.js"></script>
+  <script src="./app.js"></script>
+</body>
+</html>
