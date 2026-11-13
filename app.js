@@ -13,7 +13,6 @@
   // DOM Elements
   const chatScrollContainer = document.getElementById("chatScrollContainer");
   const welcomePanel = document.getElementById("welcomePanel");
-  const topicGrid = document.getElementById("topicGrid");
   const messagesList = document.getElementById("messagesList");
   const chatForm = document.getElementById("chatForm");
   const userInput = document.getElementById("userInput");
@@ -51,26 +50,6 @@
 
   function updateModelBadge() {
     activeModelLabel.textContent = getActiveModel();
-  }
-
-  // Render Topic Cards
-  function renderTopics() {
-    topicGrid.innerHTML = "";
-    CFG.SUGGESTED_PROMPTS.forEach((item) => {
-      const btn = document.createElement("button");
-      btn.type = "button";
-      btn.className = "topic-card";
-      btn.innerHTML = `
-        <span class="topic-card-title">${escapeHtml(item.title)}</span>
-        <span class="topic-card-desc">${escapeHtml(item.prompt)}</span>
-      `;
-      btn.addEventListener("click", () => {
-        userInput.value = item.prompt;
-        updateInputState();
-        chatForm.dispatchEvent(new Event("submit"));
-      });
-      topicGrid.appendChild(btn);
-    });
   }
 
   // Safe HTML Escaping & Lightweight Markdown Renderer
@@ -468,7 +447,6 @@
 
   // Init
   populateModelSelect();
-  renderTopics();
   updateModelBadge();
   updateInputState();
 })();

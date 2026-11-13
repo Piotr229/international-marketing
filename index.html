@@ -36,16 +36,72 @@
     <main class="chat-main" id="chatScrollContainer">
       <!-- Welcome / Empty State -->
       <section class="welcome-panel" id="welcomePanel">
+        <div class="welcome-hero-graphic" aria-hidden="true">
+          <svg viewBox="0 0 360 210" fill="none" xmlns="http://www.w3.org/2000/svg" class="hero-svg">
+            <defs>
+              <linearGradient id="globeGrad" x1="115" y1="35" x2="245" y2="175" gradientUnits="userSpaceOnUse">
+                <stop offset="0%" stop-color="#1d4ed8" />
+                <stop offset="100%" stop-color="#0f766e" />
+              </linearGradient>
+              <linearGradient id="arcGrad" x1="70" y1="60" x2="290" y2="140" gradientUnits="userSpaceOnUse">
+                <stop offset="0%" stop-color="#3b82f6" stop-opacity="0.2" />
+                <stop offset="50%" stop-color="#1d4ed8" stop-opacity="0.9" />
+                <stop offset="100%" stop-color="#14b8a6" stop-opacity="0.25" />
+              </linearGradient>
+              <radialGradient id="glowGrad" cx="50%" cy="50%" r="50%">
+                <stop offset="0%" stop-color="#3b82f6" stop-opacity="0.18" />
+                <stop offset="100%" stop-color="#3b82f6" stop-opacity="0" />
+              </radialGradient>
+            </defs>
+
+            <!-- Soft ambient glow -->
+            <circle cx="180" cy="105" r="95" fill="url(#glowGrad)" />
+
+            <!-- Outer orbital ring -->
+            <ellipse cx="180" cy="105" rx="132" ry="44" transform="rotate(-14 180 105)" stroke="url(#arcGrad)" stroke-width="1.5" stroke-dasharray="5 5" class="orbit-ring" />
+            <ellipse cx="180" cy="105" rx="112" ry="36" transform="rotate(16 180 105)" stroke="#0f766e" stroke-opacity="0.25" stroke-width="1.25" />
+
+            <!-- Main Globe -->
+            <circle cx="180" cy="105" r="64" fill="url(#globeGrad)" />
+            <circle cx="180" cy="105" r="64" stroke="#ffffff" stroke-opacity="0.25" stroke-width="1.5" />
+
+            <!-- Latitude & Longitude lines -->
+            <ellipse cx="180" cy="105" rx="30" ry="64" stroke="#ffffff" stroke-opacity="0.22" stroke-width="1.2" />
+            <ellipse cx="180" cy="105" rx="52" ry="64" stroke="#ffffff" stroke-opacity="0.14" stroke-width="1" />
+            <path d="M118 85 C150 94, 210 94, 242 85" stroke="#ffffff" stroke-opacity="0.22" stroke-width="1.2" />
+            <path d="M116 105 C150 112, 210 112, 244 105" stroke="#ffffff" stroke-opacity="0.25" stroke-width="1.2" />
+            <path d="M120 126 C152 133, 208 133, 240 126" stroke="#ffffff" stroke-opacity="0.2" stroke-width="1.2" />
+
+            <!-- Trade connection arcs & market nodes -->
+            <path d="M84 128 Q145 48 212 72" stroke="#60a5fa" stroke-width="2" stroke-linecap="round" fill="none" />
+            <path d="M212 72 Q256 96 276 122" stroke="#2dd4bf" stroke-width="2" stroke-linecap="round" fill="none" />
+
+            <!-- Floating Market Nodes -->
+            <circle cx="84" cy="128" r="6" fill="#ffffff" stroke="#1d4ed8" stroke-width="2.5" class="node-pulse" />
+            <circle cx="212" cy="72" r="6.5" fill="#ffffff" stroke="#0f766e" stroke-width="2.5" class="node-pulse" />
+            <circle cx="276" cy="122" r="5.5" fill="#ffffff" stroke="#1d4ed8" stroke-width="2.5" class="node-pulse" />
+
+            <!-- Minimalist floating cards (decorative, non-FAQ) -->
+            <g transform="translate(32, 46)">
+              <rect width="68" height="26" rx="8" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.2" />
+              <circle cx="14" cy="13" r="4" fill="#1d4ed8" />
+              <rect x="23" y="9.5" width="33" height="7" rx="3.5" fill="#cbd5e1" />
+            </g>
+
+            <g transform="translate(262, 42)">
+              <rect width="68" height="26" rx="8" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.2" />
+              <circle cx="14" cy="13" r="4" fill="#0f766e" />
+              <rect x="23" y="9.5" width="33" height="7" rx="3.5" fill="#cbd5e1" />
+            </g>
+          </svg>
+        </div>
+
         <div class="welcome-badge">College Study Assistant</div>
         <h2>Master International &amp; Global Marketing</h2>
         <p class="welcome-subtitle">
           Ask about market entry modes, cultural frameworks (Hofstede, Hall, Trompenaars), CAGE distance,
           standardization vs. adaptation, global pricing, Incoterms, and regional trade blocs.
         </p>
-
-        <div class="topic-grid" id="topicGrid">
-          <!-- Populated by app.js from config.js -->
-        </div>
       </section>
 
       <!-- Messages -->
